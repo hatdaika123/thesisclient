@@ -1,0 +1,43 @@
+@use 'src/variables.scss';
+
+.ts-login {
+
+    &-side {
+        background: #fff url('/assets/images/landscape_login.jpg') no-repeat top right;
+        color: #fff;
+    }
+
+    &-panel {
+        width: 350px;
+    }
+
+    &-title {
+        color: variables.$color-primary;
+    }
+
+    &-middle-line {
+        color: variables.$text-color-primary;
+        width: 100%; 
+        text-align: center; 
+        border-bottom: 1px solid variables.$text-color-primary; 
+        line-height: 0.1em;
+        margin: 10px 0 20px; 
+
+         
+        & span { 
+            background:#fff; 
+            padding:0 10px; 
+        }
+    }
+}
+
+@media (max-width: variables.$screen-xl-max) {
+    .ts-login-side {
+        display: none;
+    }
+
+    .ts-login-main {
+        background: #fff url('/assets/images/wave.svg') no-repeat bottom center;
+        background-size: 300%;
+    }
+}

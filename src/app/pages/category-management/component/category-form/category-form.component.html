@@ -1,0 +1,66 @@
+<p-toast styleClass="ts-mw-75"></p-toast>
+<div class="ts-category-form vh-100">
+    <h1 class="text-capitalize text-center ts-page-title">Add Category</h1>
+    <a pButton 
+        role="button" 
+        class="p-button-text ts-category-form-back"
+        [routerLink]="urlHelper.categoryManagement()">
+        <span class="material-symbols-outlined">
+            arrow_back_ios_new
+        </span>
+    </a>
+
+    <div class="ts-category-form-content ts-hide-scrollbar overflow-auto">
+        <form class="ts-category-form__form w-100"
+            *ngIf="form"
+            [formGroup]="form">
+            <div class="form-group mb-3">
+                <label class="ts-label">name</label>
+                <input pInputText
+                    class="w-100"
+                    formControlName="name" />
+            </div>
+            <div class="form-group mb-3">
+                <label class="ts-label">description</label>
+                <input pInputText
+                    class="w-100"
+                    formControlName="description" />
+            </div>
+            <div class="form-group mb-3">
+                <label class="ts-label w-100">color</label>
+                <p-colorPicker formControlName="color"></p-colorPicker>
+            </div>
+            <div class="form-group">
+                <label class="ts-label">icon</label>
+                <div class="container">
+                    <div class="row">
+                        <div *ngFor="let icon of iconPack"
+                            class="col-4 ts-category-form-icon">
+                            <input type="radio" 
+                                [id]="icon.icon" 
+                                name="icon" 
+                                [value]="icon.icon"
+                                formControlName="icon"/>
+                            <label [for]="icon.icon"
+                                class="w-100">
+                                <span class="material-symbols-outlined icon"
+                                    [ngStyle]="{ background: (form.controls['icon'].value === icon.icon) ? form.controls['color'].value : '#fff'}"
+                                    [class.active]="form.controls['icon'].value === icon.icon">
+                                    {{ icon.icon }}
+                                </span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <button pButton
+        type="button"
+        label="Add"
+        (click)="submit()"
+        [attr.disabled]="form?.valid ? null : true"
+        class="position-absolute ts-category-form-add">
+    </button>
+</div>

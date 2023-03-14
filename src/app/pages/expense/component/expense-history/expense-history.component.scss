@@ -1,0 +1,15 @@
+@use 'src/variables.scss';
+
+.ts-expense-history {
+    .title {
+        font-size: 18px;
+        font-weight: 600;
+        color: #222;
+    }
+
+    .see-all {
+        font-size: variables.$font-size-sm;
+        text-decoration: none;
+        color: variables.$text-color-primary;
+    }
+}

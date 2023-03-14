@@ -1,0 +1,63 @@
+@use 'src/variables.scss';
+/* You can add global styles to this file, and also import other style files */
+
+/* Importing Bootstrap SCSS file. */
+@import 'bootstrap/scss/bootstrap';
+
+body {
+    font-family: variables.$font-family-primary;
+}
+
+.ts {
+    &-button {
+        &-primary {
+            background-color: variables.$color-primary!important;
+        }
+    }
+
+    &-link {
+        text-decoration: none;
+        color: variables.$color-primary;
+    }
+
+    &-mw {
+        &-75 {
+            max-width: 75%;
+        }
+    }
+
+    &-center-center {
+        position: absolute!important;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    &-label {
+        text-transform: uppercase;
+        font-weight: 500;
+        color: variables.$text-color-primary;
+        font-size: 12px;
+        margin-bottom: 10px;
+    }
+
+    &-page-title {
+        font-size: 18px;
+        color: #fff;
+
+        &--dark {
+            color: #222;
+        }
+    }
+
+    /* Hide scrollbar for Chrome, Safari and Opera */
+    &-hide-scrollbar::-webkit-scrollbar {
+        display: none;
+    }
+
+    /* Hide scrollbar for IE, Edge and Firefox */
+    &-hide-scrollbar {
+        -ms-overflow-style: none;  /* IE and Edge */
+        scrollbar-width: none;  /* Firefox */
+    }
+}

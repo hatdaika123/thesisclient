@@ -1,0 +1,78 @@
+@use 'src/variables.scss';
+
+.ts-nav {
+    background: #fff;
+    padding: 10px 0;
+    border: 1px solid #efefef;
+    box-shadow: 0px -2px 20px 1px #b1b1b133;
+}
+
+.ts-navigation {
+    height: 70px;
+    width: 360px;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+
+    li {
+        list-style: none;
+        position: relative;
+        width: 90px;
+        height: 90px;
+        z-index: 1;
+    }
+    
+    li a {
+        text-decoration: none;
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        width: 100%;
+        text-align: center;
+    }
+
+    li a .icon {
+        position: relative;
+        display: block;
+        line-height: 75px;
+        font-size: 1.5em;
+        text-align: center;
+        transition: 0.5s;
+        color: #26cbff;
+    }
+
+    li.active a .icon {
+        color: #fff;
+    }
+
+    .indicator {
+        position: absolute;
+        border-radius: 30px;
+        width: 70px;
+        top: 33%;
+        left: calc(50% - 170px);
+        height: 34px;
+        background: #26cbff;
+        background: linear-gradient(90deg, rgb(2, 0, 36) 0%, rgb(38, 203, 255) 0%, rgb(1, 184, 198) 100%);
+        transition: 0.5s;
+    }
+
+    li:nth-child(1).active ~ .indicator {
+        transform: translateX(calc(90px * 0));
+    }
+
+    li:nth-child(2).active ~ .indicator {
+        transform: translateX(calc(90px * 1));
+    }
+    
+    li:nth-child(3).active ~ .indicator {
+        transform: translateX(calc(90px * 2));
+    }
+    
+    li:nth-child(4).active ~ .indicator {
+        transform: translateX(calc(90px * 3));
+    }
+    
+}

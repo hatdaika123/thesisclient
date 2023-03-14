@@ -1,0 +1,36 @@
+@use 'src/variables.scss';
+
+.ts-signup {
+    background: #fff url('/assets/images/Logo.png') no-repeat top right;
+    color: variables.$text-color-primary;
+
+    &-panel {
+        width: 350px;
+    }
+
+    &-title {
+        color: variables.$color-primary;
+    }
+
+    &-landscape {
+        background: variables.$color-primary url('/assets/images/landscape_login.jpg') center center;
+    }
+}
+
+:host ::ng-deep .p-password {
+    width: 100%;
+}
+
+:host ::ng-deep .p-password input {
+    width: 100%;
+}
+
+:host ::ng-deep .p-button-label {
+    font-weight: normal;
+}
+
+@media (max-width: variables.$screen-xl-max) {
+    .ts-signup-landscape {
+        display: none;
+    }
+}

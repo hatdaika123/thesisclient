@@ -1,0 +1,59 @@
+<p-toast styleClass="ts-mw-75"></p-toast>
+<p-confirmDialog [breakpoints]="{'960px': '75vw', '640px': '100vw'}" 
+    [style]="{width: '50vw'}"
+    position="bottom"
+    acceptButtonStyleClass="ts-button-primary"
+    rejectButtonStyleClass="ts-button-primary">
+</p-confirmDialog>
+<div class="container-fluid ts-signup">
+    <div class="row vh-100">
+        <div class="col-sm-7 ts-signup-landscape"></div>
+        <div class="col-sm d-flex justify-content-center align-items-center">
+            <form *ngIf="form"
+                class="d-flex flex-column ts-signup-panel"
+                (ngSubmit)="submit()"
+                [formGroup]="form">
+
+                <h1 class="ts-signup-title">Welcome</h1>
+                <span class="mb-4">Please login or sign up our app</span>
+
+                <input type="text" 
+                    pInputText 
+                    class="w-100 mb-4"
+                    placeholder="Username"
+                    formControlName="username"> 
+                <p-password class="w-100 mb-4"
+                    placeholder="Password"
+                    [toggleMask]="true"
+                    formControlName="password">
+                </p-password> 
+                <input type="text" 
+                    pInputText 
+                    class="w-100 mb-4"
+                    placeholder="Email"
+                    formControlName="email"
+                    email> 
+
+                <button pButton 
+                    type="submit"
+                    ngClass="ts-button-primary mb-4"
+                    [attr.disabled]="form.valid ? null : true">
+                    <span class="text-center w-100 text-uppercase">
+                        <i *ngIf="processing; else signup"
+                            class="pi pi-spin pi-spinner">
+                        </i>
+                        <ng-template #signup>
+                            Sign Up
+                        </ng-template>
+                    </span>
+                </button>
+
+                <span>
+                    Already have an account?
+                    <a routerLink="/login" class="ts-link">Log In</a>
+                </span>
+            </form>
+
+        </div>
+    </div>
+</div>

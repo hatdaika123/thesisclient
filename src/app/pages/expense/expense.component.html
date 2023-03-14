@@ -1,0 +1,39 @@
+<div class="ts-expense">
+    <h1 class="ts-expense-greeting">Hi,</h1>
+    <h1 class="ts-expense-username text-capitalize">Enjelin Morgeana</h1>
+    <div class="ts-expense-balance mb-4">
+        <h2 class="text-capitalize total-balance">
+            Total Balance
+        </h2>
+        <p class="total text-center">{{ 2548 | currency }}</p>
+        <div class="d-flex justify-content-between">
+            <div class="income">
+                <span class="text-capitalize text">
+                    <span class="material-symbols-outlined icon">
+                        arrow_downward
+                    </span>
+                    Income
+                </span>
+                <p>{{ 1840 | currency }}</p>
+            </div>
+            <div class="expense">
+                <span class="text-capitalize text">
+                    <span class="material-symbols-outlined icon">
+                        arrow_upward
+                    </span>
+                    Expense
+                </span>
+                <p>{{ 284 | currency }}</p>
+            </div>
+        </div>
+    </div>
+
+    <expense-history></expense-history>
+
+    <a pButton 
+        role="button" 
+        class="p-button ts-expense-add-btn"
+        icon="pi pi-plus"
+        [routerLink]="urlHelper.newExpense()">
+    </a>
+</div>

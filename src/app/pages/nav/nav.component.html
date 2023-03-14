@@ -1,0 +1,15 @@
+<div class="ts-nav w-100 position-fixed bottom-0">
+    <div class="d-flex justify-content-center align-items-center rounded">
+        <ul class="ts-navigation d-flex">
+            <li *ngFor="let item of ITEMS"
+                [class.active]="currentRoute === item.route">
+                <a [routerLink]="[item.route]">
+                    <span class="material-symbols-outlined icon">{{ item.icon }}</span>
+                </a>
+            </li>
+            <div class="indicator">
+                <span></span>
+            </div>
+        </ul>
+    </div>
+</div>

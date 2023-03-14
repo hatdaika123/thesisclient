@@ -1,0 +1,63 @@
+<p-toast styleClass="ts-mw-75"></p-toast>
+<div class="container-fluid">
+    <div class="row vh-100">
+        <div class="col-sm d-flex justify-content-center align-items-center ts-login-main">
+            <form *ngIf="form" 
+                class="d-flex flex-column ts-login-panel"
+                (ngSubmit)="submit()"
+                [formGroup]="form">
+
+                <h1 class="ts-login-title mb-5 text-center">Welcome back,</h1>
+
+                <input type="text" 
+                    pInputText 
+                    class="w-100 mb-4"
+                    placeholder="Username"
+                    formControlName="username">
+                <input type="password" 
+                    pInputText 
+                    class="w-100 mb-4"
+                    placeholder="Password"
+                    formControlName="password">
+                
+                <button pButton 
+                    type="submit"
+                    ngClass="ts-button-primary mb-4">
+                    <span class="text-center w-100 text-uppercase">
+                        <i *ngIf="processing; else login"
+                            class="pi pi-spin pi-spinner">
+                        </i>
+                        <ng-template #login>
+                            Log In
+                        </ng-template>
+                    </span>
+                </button>
+                <p class="text-center text-uppercase ts-login-middle-line">
+                    <span>or</span>
+                </p>
+                <button pButton 
+                    type="button"
+                    ngClass="ts-button-primary mb-4"
+                    (click)="navigateToSignUpPage()">
+                    <span class="text-center w-100 text-uppercase">
+                        Sign Up
+                    </span>
+                </button>
+                <span>
+                    <a href="#" class="ts-link">Forgot password?</a>
+                </span>
+            </form>
+        </div>
+        <div class="col-sm-5 ts-login-side pt-5 position-relative">
+            <h1 class="text-center mt-5">New here?</h1>
+            <p class="text-center">Sign up and discover great features of our app.</p>
+            <button pButton
+                type="button"
+                label="SIGN UP"
+                class="p-button-outlined position-absolute"
+                style="color: #fff; top: 70%; left: 50%; transform: translateX(-50%);"
+                (click)="navigateToSignUpPage()">
+            </button>
+        </div>
+    </div>
+</div>
