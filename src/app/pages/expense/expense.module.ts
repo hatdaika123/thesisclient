@@ -11,23 +11,32 @@ import { ExpenseHistoryItemComponent } from './component/expense-history-item/ex
 import { ButtonModule } from 'primeng/button';
 import { DropdownModule } from 'primeng/dropdown';
 import { CalendarModule } from 'primeng/calendar';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SharesModule } from 'src/app/shares/shares.module';
+import { ToastModule } from 'primeng/toast';
+import { ExpenseListComponent } from './component/expense-list/expense-list.component';
 
 @NgModule({
   declarations: [
     ExpenseComponent,
     ExpenseFormComponent,
     ExpenseHistoryComponent,
-    ExpenseHistoryItemComponent
+    ExpenseHistoryItemComponent,
+    ExpenseListComponent
   ],
   imports: [
     CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
     ExpenseRoutingModule,
     InputNumberModule,
     InputTextareaModule,
     InputTextModule,
     ButtonModule,
     DropdownModule,
-    CalendarModule
+    CalendarModule,
+    SharesModule,
+    ToastModule
   ],
   exports: [
     ExpenseHistoryComponent

@@ -27,8 +27,16 @@ export const UrlHelper = {
         return '/pages/expense';
     },
 
+    expenseAll() {
+        return '/pages/expense/all';
+    },
+
     newExpense() {
         return '/pages/expense/form';
+    },
+
+    editExpense(id?: string) {
+        return '/pages/expense/form' + id;
     },
 
     categoryManagement() {
@@ -37,6 +45,10 @@ export const UrlHelper = {
 
     newCategory() {
         return '/pages/category/form';
+    },
+
+    editCategory(id?: string) {
+        return '/pages/category/form' + id;
     }
     
 }

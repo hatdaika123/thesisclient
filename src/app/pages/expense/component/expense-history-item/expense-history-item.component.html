@@ -1,10 +1,21 @@
-<div class="d-flex justify-content-between align-items-center expense-history-item">
+<div *ngIf="data" 
+    class="d-flex justify-content-between align-items-center expense-history-item"
+    [routerLink]="urlHelper.editExpense(data._id)">
     <div class="item">
-        <div class="category"></div>
-        <h5 class="category-name m-0">Study</h5>
-        <span class="date">Today</span>
+        <span class="material-symbols-outlined rounded category d-inline-flex justify-content-center align-items-center"
+            [ngStyle]="{background: data.category?.color || '#058cb1', color: '#fff'}">
+            {{ data.category?.icon }}
+        </span>
+        <h5 class="category-name m-0">{{ data.category?.name }}</h5>
+        <span class="date">{{ data.date | date }}</span>
     </div>
     <div class="amount">
-        <span class="income">+ {{ 850 | currency }}</span>
+        <span *ngIf="data.type === 'income'; else expenseTpl" 
+            class="income">
+            + {{ data.amount | currency }}
+        </span>
+        <ng-template #expenseTpl>
+            <span class="expense">- {{ data.amount | currency }}</span>
+        </ng-template>
     </div>
 </div>

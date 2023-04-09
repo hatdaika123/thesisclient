@@ -1,15 +1,14 @@
+<p-toast styleClass="ts-mw-75"></p-toast>
 <div class="ts-expense-history">
     <div class="d-flex justify-content-between mb-3">
         <h3 class="text-capitalize title m-0">Transactions History</h3>
-        <a href="#" class="see-all">See all</a>
+        <a [routerLink]="urlHelper.expenseAll()" class="see-all">See all</a>
     </div>
 
     <div class="d-flex flex-column"
         style="gap: 10px;">
-        <expense-history-item></expense-history-item>
-        <expense-history-item></expense-history-item>
-        <expense-history-item></expense-history-item>
-        <expense-history-item></expense-history-item>
-        <expense-history-item></expense-history-item>
+        <ng-container *ngFor="let expense of expenses">
+            <expense-history-item [data]="expense"></expense-history-item>
+        </ng-container>
     </div>
 </div>

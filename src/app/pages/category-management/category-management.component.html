@@ -1,4 +1,4 @@
-<div class="ts-category-management position-relative">
+<div class="ts-category-management position-relative overflow-hidden vh-100">
     <h1 class="text-capitalize text-center ts-page-title">Category</h1>
 
     <a pButton 
@@ -17,5 +17,7 @@
         [routerLink]="urlHelper.newCategory()">
     </a>
 
-    <category-list></category-list>
+    <div class="ts-m-page-content ts-hide-scrollbar overflow-auto">
+        <category-list></category-list>
+    </div>
 </div>

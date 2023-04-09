@@ -9,13 +9,17 @@ import { ColorPickerModule } from 'primeng/colorpicker';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ToastModule } from 'primeng/toast';
 import { CategoryListComponent } from './component/category-list/category-list.component';
-
+import { CategoryItemComponent } from './component/category-item/category-item.component';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
+import { SkeletonModule } from 'primeng/skeleton';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
 
 @NgModule({
   declarations: [
     CategoryManagementComponent,
     CategoryFormComponent,
-    CategoryListComponent
+    CategoryListComponent,
+    CategoryItemComponent
   ],
   imports: [
     CommonModule,
@@ -25,7 +29,10 @@ import { CategoryListComponent } from './component/category-list/category-list.c
     ButtonModule,
     InputTextModule,
     ColorPickerModule,
-    ToastModule
+    ToastModule,
+    ProgressSpinnerModule,
+    SkeletonModule,
+    ConfirmDialogModule
   ]
 })
 export default class CategoryManagementModule { }

@@ -1,1 +1,18 @@
-<p>category-list works!</p>
+<p-toast styleClass="ts-mw-75"></p-toast>
+<div class="d-flex flex-column"
+    style="gap: 10px;">
+    <ng-container *ngIf="loading">
+        <p-skeleton height="70px"></p-skeleton>
+        <p-skeleton height="70px"></p-skeleton>
+        <p-skeleton height="70px"></p-skeleton>
+        <p-skeleton height="70px"></p-skeleton>
+        <p-skeleton height="70px"></p-skeleton>
+        <p-skeleton height="70px"></p-skeleton>
+        <p-skeleton height="70px"></p-skeleton>
+        <p-skeleton height="70px"></p-skeleton>
+        <p-skeleton height="70px"></p-skeleton>
+    </ng-container>
+    <category-item *ngFor="let category of categories"
+        [data]="category">
+    </category-item>
+</div>

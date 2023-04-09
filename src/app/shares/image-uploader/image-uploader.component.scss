@@ -1,0 +1,25 @@
+@use 'src/variables.scss';
+
+$color: #CED4DA;
+$size: 100px;
+
+.ts-image-uploader {
+    .label {
+        height: $size;
+        width: $size;
+        border: 2px dashed $color;
+        color: $color;
+
+        .icon {
+            font-size: variables.$font-size-lg;
+        }
+    }
+
+    &__image {
+        width: $size;
+        height: $size;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center center;
+    }
+}

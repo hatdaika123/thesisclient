@@ -1,6 +1,12 @@
 <p-toast styleClass="ts-mw-75"></p-toast>
+<p-confirmDialog [breakpoints]="{'960px': '75vw', '640px': '100vw'}" 
+    [style]="{width: '50vw'}"
+    position="bottom"
+    acceptButtonStyleClass="ts-button-primary"
+    rejectButtonStyleClass="ts-button-primary">
+</p-confirmDialog>
 <div class="ts-category-form vh-100">
-    <h1 class="text-capitalize text-center ts-page-title">Add Category</h1>
+    <h1 class="text-capitalize text-center ts-page-title">{{ category ? 'Edit' : 'New' }} Category</h1>
     <a pButton 
         role="button" 
         class="p-button-text ts-category-form-back"
@@ -9,6 +15,10 @@
             arrow_back_ios_new
         </span>
     </a>
+
+    <p-progressSpinner *ngIf="loading"
+        class="ts-category-form-loading">
+    </p-progressSpinner>
 
     <div class="ts-category-form-content ts-hide-scrollbar overflow-auto">
         <form class="ts-category-form__form w-100"
@@ -34,6 +44,11 @@
                 <label class="ts-label">icon</label>
                 <div class="container">
                     <div class="row">
+                        <ng-container *ngIf="!iconPack?.length">
+                            <p-skeleton class="col-4" height="65px"></p-skeleton>
+                            <p-skeleton class="col-4" height="65px"></p-skeleton>
+                            <p-skeleton class="col-4" height="65px"></p-skeleton>
+                        </ng-container>
                         <div *ngFor="let icon of iconPack"
                             class="col-4 ts-category-form-icon">
                             <input type="radio" 
@@ -56,11 +71,23 @@
         </form>
     </div>
 
-    <button pButton
-        type="button"
-        label="Add"
-        (click)="submit()"
-        [attr.disabled]="form?.valid ? null : true"
-        class="position-absolute ts-category-form-add">
-    </button>
+    <div class="position-absolute ts-category-form-btns d-flex justify-content-center">
+        <button *ngIf="form" 
+            pButton
+            type="button"
+            [label]="category ? 'Save' : 'Add'"
+            [loading]="submitting"
+            (click)="submit()"
+            [attr.disabled]="form.valid ? null : true"
+            class="ts-button-third ts-mr-5">
+        </button>
+        <button *ngIf="category"
+            pButton
+            type="button"
+            label="Delete"
+            [loading]="deleting"
+            (click)="onDeleteClicked()"
+            class="p-button-danger">
+        </button>
+    </div>
 </div>

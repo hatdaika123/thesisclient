@@ -12,6 +12,11 @@ const routes: Routes = [
         path: 'form',
         component: CategoryFormComponent,
         data: { animation: 'CategoryFormPage' }
+    },
+    {
+        path: 'form/:id',
+        component: CategoryFormComponent,
+        data: { animation: 'CategoryFormPage' }
     }
 ];
 @NgModule({

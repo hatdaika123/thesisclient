@@ -1,4 +1,5 @@
-<div class="ts-expense-form">
+<p-toast styleClass="ts-mw-75"></p-toast>
+<div class="ts-expense-form vh-100">
     <h1 class="text-capitalize text-center ts-page-title">Add Transaction</h1>
     <a pButton 
         role="button" 
@@ -9,30 +10,78 @@
         </span>
     </a>
 
-    <div class="ts-expense-form__form w-100">
-        <div class="form-group mb-3">
-            <label class="ts-label">type</label>
-            <p-dropdown></p-dropdown>
+    <div class="ts-m-page-content ts-hide-scrollbar overflow-auto">
+        <form *ngIf="form"
+            [formGroup]="form" 
+            class="ts-expense-form__form w-100 border">
+            <div class="form-group mb-3">
+                <label class="ts-label">type</label>
+                <p-dropdown [options]="transactionTypes"
+                    formControlName="type">
+                </p-dropdown>
+            </div>
+            <div class="form-group mb-3">
+                <label class="ts-label">category</label>
+                <p-dropdown [options]="categories"
+                    optionLabel="name"
+                    optionValue="_id"
+                    emptyMessage="No categories found"
+                    formControlName="categoryId"
+                    [filter]="true">
+                    <ng-template let-category pTemplate="item">
+                        <div class="country-item d-flex align-items-center">
+                            <span class="material-symbols-outlined ts-mr-5 rounded p-2"
+                                [ngStyle]="{background: category.color || '#058cb1', color: '#fff'}">
+                                {{ category.icon }}
+                            </span>
+                            <span class="ts-3-dots"
+                                style="max-width: 200px;">
+                                {{ category.name }}
+                            </span>
+                        </div>
+                    </ng-template>
+                </p-dropdown>
+            </div>
+            <div class="form-group mb-3">
+                <label class="ts-label">amount</label>
+                <p-inputNumber mode="currency" 
+                    currency="USD" 
+                    locale="en-US"
+                    formControlName="amount">
+                </p-inputNumber>
+            </div>
+            <div class="form-group mb-3">
+                <label class="ts-label">date</label>
+                <p-calendar formControlName="date"></p-calendar>
+            </div>
+            <div class="form-group mb-3">
+                <label class="ts-label">description</label>
+                <input pInputText
+                    class="w-100"
+                    formControlName="description" />
+            </div>
+            <div class="form-group mb-3">
+                <label class="ts-label">location</label>
+                <input pInputText
+                    class="w-100"
+                    formControlName="location" />
+            </div>
+            <div class="form-group">
+                <label class="ts-label">images</label>
+                <image-uploader formControlName="images"></image-uploader>
+            </div>
+        </form>
+
+        <div class="position-absolute ts-expense-form__btns d-flex justify-content-center">
+            <button *ngIf="form" 
+                pButton
+                label="Add"
+                type="button"
+                [attr.disabled]="form.valid ? null : true"
+                class="ts-button-third"
+                (click)="submit()">
+            </button>
         </div>
-        <div class="form-group mb-3">
-            <label class="ts-label">category</label>
-            <p-dropdown></p-dropdown>
-        </div>
-        <div class="form-group mb-3">
-            <label class="ts-label">amount</label>
-            <p-inputNumber mode="currency" 
-                currency="USD" 
-                locale="en-US">
-            </p-inputNumber>
-        </div>
-        <div class="form-group mb-3">
-            <label class="ts-label">date</label>
-            <p-calendar></p-calendar>
-        </div>
-        <div class="form-group mb-3">
-            <label class="ts-label">description</label>
-            <input pInputText
-                class="w-100" />
-        </div>
+
     </div>
 </div>

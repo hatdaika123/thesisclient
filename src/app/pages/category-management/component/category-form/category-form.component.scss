@@ -27,6 +27,13 @@
         }
     }
 
+    &-loading {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
     &__form {
         background: #fff;
         margin-top: 60px;
@@ -55,16 +62,14 @@
         }
     }
 
-    &-add {
+    &-btns {
         bottom: 100px;
         left: 50%;
         transform: translateX(-50%);
-        padding: 10px 30px;
-        background: #26cbff;
-        border: 0;
 
-        &:focus {
-            background: #26cbff;
+        button {
+            padding: 10px 30px;
+            border: 0;
         }
     }
 }

@@ -1,0 +1,23 @@
+<p-toast styleClass="ts-mw-75"></p-toast>
+<div class="ts-image-uploader d-flex flex-wrap"
+    style="gap: 4px;">
+    <ng-container *ngFor="let image of albums; let i = index">
+        <div class="border ts-image-uploader__image"
+            [ngStyle]="{backgroundImage: 'url(' + image.src + ')'}"
+            (click)="open(i)">
+        </div>
+    </ng-container>
+    <label for="uploader"
+        class="label d-flex justify-content-center align-items-center">
+        <span class="material-symbols-outlined icon">
+            add_a_photo
+        </span>
+    </label>
+    <input id="uploader" 
+        [name]="name" 
+        type="file" 
+        [multiple]="multiple"
+        accept="image/*"
+        hidden
+        (change)="upload($event)"/>
+</div>

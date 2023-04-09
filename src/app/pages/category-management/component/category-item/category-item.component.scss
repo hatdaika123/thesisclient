@@ -1,0 +1,16 @@
+@use 'src/app/pages/expense/component/expense-history-item/expense-history-item.component.scss';
+
+.ts-category-item {
+    background: #fff;
+    width: 100%;
+    height: unset;
+    padding: 10px;
+    border-radius: 6px;
+
+    .item {
+        .category {
+            font-size: 50px;
+            color: #fff;
+        }
+    }
+}

@@ -1,4 +1,4 @@
-.ts-category-management {
+.ts-expense-list {
     padding: 20px;
     padding-top: 70px;
     background: #058cb1;
@@ -15,14 +15,4 @@
         }
     }
 
-    &-add-btn {
-        position: absolute;
-        bottom: 102px;
-        left: 50%;
-        transform: translateX(-50%);
-        color: #fff;
-        background: #1cc6f0;
-        border: 0;
-        text-decoration: none;
-    }
 }
