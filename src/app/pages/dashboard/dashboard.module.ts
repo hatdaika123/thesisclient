@@ -6,6 +6,7 @@ import { StatisticComponent } from './component/statistic/statistic.component';
 import { SelectButtonModule } from 'primeng/selectbutton';
 import { DropdownModule } from 'primeng/dropdown';
 import ExpenseModule from '../expense/expense.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -13,6 +14,8 @@ import ExpenseModule from '../expense/expense.module';
   ],
   imports: [
     CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
     DashboardRoutingModule,
     ChartModule,
     SelectButtonModule,

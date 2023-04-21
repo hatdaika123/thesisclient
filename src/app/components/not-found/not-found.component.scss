@@ -1,0 +1,18 @@
+@use 'src/variables.scss';
+
+.ts-not-found {
+    background: variables.$color-secondary url('/assets/images/404.svg') center center;
+    background-repeat: no-repeat;
+
+    a {
+        position: fixed;
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: 25%;
+        background: #263238;
+        font-weight: bold;
+        letter-spacing: 1px;
+        color: #fff;
+        padding: 10px 20px;
+    }
+}

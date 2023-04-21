@@ -1,5 +1,5 @@
 <div class="ts-expense-list overflow-hidden vh-100">
-    <h1 class="text-capitalize text-center ts-page-title">Home</h1>
+    <h1 class="text-capitalize text-center ts-page-title">All Transactions</h1>
 
     <a pButton 
         role="button" 
@@ -11,6 +11,9 @@
     </a>
 
     <div class="ts-m-page-content ts-hide-scrollbar overflow-auto">
-
+        <expense-history [showHeader]="false"
+            [loadOnScroll]="true"
+            [limit]="20">
+        </expense-history>
     </div>
 </div>

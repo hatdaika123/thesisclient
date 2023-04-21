@@ -15,6 +15,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharesModule } from 'src/app/shares/shares.module';
 import { ToastModule } from 'primeng/toast';
 import { ExpenseListComponent } from './component/expense-list/expense-list.component';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { ExpenseListComponent } from './component/expense-list/expense-list.comp
     DropdownModule,
     CalendarModule,
     SharesModule,
-    ToastModule
+    ToastModule,
+    ConfirmDialogModule,
   ],
   exports: [
     ExpenseHistoryComponent

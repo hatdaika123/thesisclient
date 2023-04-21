@@ -9,11 +9,13 @@ import { ToastModule } from 'primeng/toast';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { LogInComponent } from './log-in/log-in.component';
 import { RouterModule } from '@angular/router';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 @NgModule({
   declarations: [
     SignUpComponent,
-    LogInComponent
+    LogInComponent,
+    NotFoundComponent
   ],
   imports: [
     CommonModule,

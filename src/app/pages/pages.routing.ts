@@ -3,6 +3,7 @@ import { RouterModule, Routes } from "@angular/router";
 import { CategoryManagementComponent } from "./category-management/category-management.component";
 import { PagesComponent } from "./pages.component";
 import { UserProfileComponent } from "./user-profile/user-profile.component";
+import { AuthGuard } from "../guards/auth.guard";
 
 const routes: Routes = [
     {
@@ -17,22 +18,26 @@ const routes: Routes = [
             {
                 path: 'dashboard',
                 loadChildren: () => import('./dashboard/dashboard.module').then(m => m.default),
-                data: { animation: 'DashboardPage' }
+                data: { animation: 'DashboardPage' },
+                canActivate: [AuthGuard]
             },
             {
                 path: 'expense',
                 loadChildren: () => import('./expense/expense.module').then(m => m.default),
-                data: { animation: 'ExpensePage' }
+                data: { animation: 'ExpensePage' },
+                canActivate: [AuthGuard]
             },
             {
                 path: 'category',
                 loadChildren: () => import('./category-management/category-management.module').then(m => m.default),
-                data: { animation: 'CategoryPage' }
+                data: { animation: 'CategoryPage' },
+                canActivate: [AuthGuard]
             },
             {
                 path: 'profile',
                 component: UserProfileComponent,
-                data: { animation: 'ProfilePage' }
+                data: { animation: 'ProfilePage' },
+                canActivate: [AuthGuard]
             }
         ]
     },

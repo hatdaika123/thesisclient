@@ -1,7 +1,7 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { MessageService } from 'primeng/api';
-import { switchMap, tap } from 'rxjs';
+import { concatMap, tap } from 'rxjs';
 import { CategoryDTO } from 'src/app/models/CategoryDTO.model';
 import { ExpenseDTO } from 'src/app/models/ExpenseDTO.model';
 import { PageOfExpenseDTO } from 'src/app/models/PageOfExpenseDTO.model';
@@ -16,11 +16,19 @@ import { UrlHelper, alertError } from 'src/app/utils/helpers';
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [MessageService]
 })
-export class ExpenseHistoryComponent implements OnInit {
+export class ExpenseHistoryComponent implements OnInit, AfterViewInit {
+
+  @Input() header: string = 'transactions history';
+  @Input() showHeader: boolean = true;
+  @Input() loadOnScroll: boolean = false;
+  @Input() limit: number = 5;
+  @Input() sort: string = 'date,desc';
+  @ViewChild('anchor') anchorEl?: ElementRef;
 
   public expenses: ExpenseDTO[] = [];
-  private LIMIT: number = 10;
   public urlHelper = UrlHelper;
+  private end$?: IntersectionObserver;
+  private currentPage: number = 0;
 
   constructor(
     private expenseService: ExpenseService,
@@ -30,17 +38,23 @@ export class ExpenseHistoryComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.loadExpenses();
+    if (!this.loadOnScroll) {
+      this.loadExpenses(0);
+    }
   }
 
-  loadExpenses(): void {
+  loadExpenses(page: number): void {
+
     this.expenseService
-      .getExpensesUsingGET(0, this.LIMIT)
+      .getExpensesUsingGET(page, this.limit, this.sort)
       .pipe(
         tap(data => {
-          this.expenses = data.data;
+          this.expenses.push(...data.data);
+          if (((data.currentPage + 1) * data.pageSize >= data.total)) {
+            this.end$?.unobserve(this.anchorEl?.nativeElement);
+          }
         }),
-        switchMap((data: PageOfExpenseDTO) => {
+        concatMap((data: PageOfExpenseDTO) => {
           const categoryIds: string[] = data.data.map(e => e.categoryId || '');
           return this.categoryService.listCategoryByIdsUsingGET(categoryIds);
         })
@@ -61,6 +75,23 @@ export class ExpenseHistoryComponent implements OnInit {
           alertError(this.messageService, err.error);
         }
       });
+  }
+
+  ngAfterViewInit(): void {
+    if (!this.anchorEl) return;
+
+    this.end$ = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) {
+          return;
+        }
+
+        this.loadExpenses(this.currentPage);
+        this.currentPage++;
+      });
+    });
+
+    this.end$.observe(this.anchorEl.nativeElement);
   }
 
 }

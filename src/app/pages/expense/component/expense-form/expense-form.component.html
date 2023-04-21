@@ -1,4 +1,10 @@
 <p-toast styleClass="ts-mw-75"></p-toast>
+<p-confirmDialog [breakpoints]="{'960px': '75vw', '640px': '100vw'}" 
+    [style]="{width: '50vw'}"
+    position="bottom"
+    acceptButtonStyleClass="ts-button-primary"
+    rejectButtonStyleClass="ts-button-primary">
+</p-confirmDialog>
 <div class="ts-expense-form vh-100">
     <h1 class="text-capitalize text-center ts-page-title">Add Transaction</h1>
     <a pButton 
@@ -75,11 +81,19 @@
         <div class="position-absolute ts-expense-form__btns d-flex justify-content-center">
             <button *ngIf="form" 
                 pButton
-                label="Add"
+                [label]="expense ? 'Save' : 'Add'"
                 type="button"
                 [attr.disabled]="form.valid ? null : true"
-                class="ts-button-third"
+                class="ts-button-third ts-mr-5"
                 (click)="submit()">
+            </button>
+            <button *ngIf="expense"
+                pButton
+                type="button"
+                label="Delete"
+                [loading]="deleting"
+                (click)="onDeleteClicked()"
+                class="p-button-danger">
             </button>
         </div>
 

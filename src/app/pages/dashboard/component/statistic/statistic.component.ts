@@ -1,5 +1,6 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { UrlHelper } from 'src/app/utils/helpers';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { TRANSACTION_TYPES, UrlHelper } from 'src/app/utils/helpers';
 
 @Component({
   selector: 'app-statistic',
@@ -9,7 +10,9 @@ import { UrlHelper } from 'src/app/utils/helpers';
 })
 export class StatisticComponent implements OnInit {
 
+  public form?: FormGroup;
   public urlHelper = UrlHelper;
+  public transactionTypes = TRANSACTION_TYPES;
   public dateTypes: DateType[] = [
     { name: 'Day', value: 'day' },
     { name: 'Week', value: 'week' },
@@ -23,10 +26,12 @@ export class StatisticComponent implements OnInit {
   chartOptions: any;
 
   constructor(
-    private cd: ChangeDetectorRef
+    private fb: FormBuilder
   ) { }
 
   ngOnInit(): void {
+    this.initForm();
+
     this.basicData = {
       labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'],
       datasets: [
@@ -93,6 +98,13 @@ export class StatisticComponent implements OnInit {
         }
       }
     }
+  }
+
+  initForm(): void {
+    this.form = this.fb.group({
+      dateType: ['day'],
+      expenseType: ['expense']
+    });
   }
 }
 

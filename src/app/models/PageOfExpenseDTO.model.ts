@@ -2,7 +2,7 @@ import { ExpenseDTO } from "./ExpenseDTO.model";
 
 export interface PageOfExpenseDTO {
     data: ExpenseDTO[];
-    page: number;
+    currentPage: number;
     pageSize: number;
     total: number;
 }

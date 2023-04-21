@@ -19,6 +19,10 @@ export function alertError(api: MessageService, error: ErrorDTO): void {
 
 export const UrlHelper = {
 
+    logIn() {
+        return '/login';
+    },
+
     signUp() {
         return '/signup';
     },
@@ -36,7 +40,7 @@ export const UrlHelper = {
     },
 
     editExpense(id?: string) {
-        return '/pages/expense/form' + id;
+        return '/pages/expense/form/' + id;
     },
 
     categoryManagement() {
@@ -48,7 +52,12 @@ export const UrlHelper = {
     },
 
     editCategory(id?: string) {
-        return '/pages/category/form' + id;
+        return '/pages/category/form/' + id;
     }
     
 }
+
+export const TRANSACTION_TYPES = [
+    { label: 'Income', value: 'income' },
+    { label: 'Expense', value: 'expense' }
+];

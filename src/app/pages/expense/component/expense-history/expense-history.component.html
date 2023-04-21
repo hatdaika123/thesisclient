@@ -1,7 +1,8 @@
 <p-toast styleClass="ts-mw-75"></p-toast>
 <div class="ts-expense-history">
-    <div class="d-flex justify-content-between mb-3">
-        <h3 class="text-capitalize title m-0">Transactions History</h3>
+    <div *ngIf="showHeader" 
+        class="d-flex justify-content-between mb-3">
+        <h3 class="text-capitalize title m-0">{{ header }}</h3>
         <a [routerLink]="urlHelper.expenseAll()" class="see-all">See all</a>
     </div>
 
@@ -10,5 +11,8 @@
         <ng-container *ngFor="let expense of expenses">
             <expense-history-item [data]="expense"></expense-history-item>
         </ng-container>
+        <p *ngIf="loadOnScroll"
+            #anchor>
+        </p>
     </div>
 </div>

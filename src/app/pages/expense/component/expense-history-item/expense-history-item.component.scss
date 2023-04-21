@@ -1,8 +1,9 @@
 @use 'src/variables.scss';
 
 .expense-history-item {
-    height: 50px;
     width: 100%;
+    background: #fff;
+    padding: 5px 10px;
 
     .item {  
         display: grid;

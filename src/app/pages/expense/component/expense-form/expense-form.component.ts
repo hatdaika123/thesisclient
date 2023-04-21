@@ -2,13 +2,13 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { MessageService } from 'primeng/api';
+import { ConfirmationService, MessageService } from 'primeng/api';
 import { finalize } from 'rxjs';
 import { CategoryDTO } from 'src/app/models/CategoryDTO.model';
 import { ExpenseDTO } from 'src/app/models/ExpenseDTO.model';
 import { CategoryService } from 'src/app/services/category.service';
 import { ExpenseService } from 'src/app/services/expense.service';
-import { alertError } from 'src/app/utils/helpers';
+import { TRANSACTION_TYPES, alertError } from 'src/app/utils/helpers';
 import { UrlHelper, alertSuccess } from 'src/app/utils/helpers';
 
 @Component({
@@ -16,19 +16,17 @@ import { UrlHelper, alertSuccess } from 'src/app/utils/helpers';
   templateUrl: './expense-form.component.html',
   styleUrls: ['./expense-form.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [MessageService]
+  providers: [MessageService, ConfirmationService]
 })
 export class ExpenseFormComponent implements OnInit {
 
   public urlHelper = UrlHelper;
-  public transactionTypes = [
-    { label: 'Income', value: 'income' },
-    { label: 'Expense', value: 'expense' }
-  ];
+  public transactionTypes = TRANSACTION_TYPES;
   public form?: FormGroup;
   public categories: CategoryDTO[] = [];
   public submitting: boolean = false;
   public loading: boolean = false;
+  public deleting: boolean = false;
   public expense?: ExpenseDTO;
 
   constructor(
@@ -38,7 +36,8 @@ export class ExpenseFormComponent implements OnInit {
     private expenseService: ExpenseService,
     private router: Router,
     private messageService: MessageService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private confirmationService: ConfirmationService
   ) { }
 
   ngOnInit(): void {
@@ -124,6 +123,38 @@ export class ExpenseFormComponent implements OnInit {
           this.router.navigateByUrl(UrlHelper.expense());
         },
         error: (err: HttpErrorResponse) => {
+          alertError(this.messageService, err.error);
+        }
+      });
+  }
+
+  onDeleteClicked(): void {
+    if (!this.expense?._id) return;
+
+    this.confirmationService.confirm({
+      message: "Are you sure to delete this transaction?",
+      header: 'Confirmation',
+      icon: 'pi pi-exclamation-triangle',
+      accept: () => {
+        this.deleteExpenseById(<string>this.expense?._id);
+      }
+    });
+  }
+
+  deleteExpenseById(id: string): void {
+    if (this.deleting) return;
+    this.deleting = true;
+
+    this.expenseService
+      .deleteExpenseByIdUsingDELETE(id)
+      .subscribe({
+        next: _ => {
+          alertSuccess(this.messageService, 'Deleted.');
+          this.deleting = false;
+          this.router.navigateByUrl(this.urlHelper.expense());
+        },
+        error: (err: HttpErrorResponse) => {
+          this.deleting = false;
           alertError(this.messageService, err.error);
         }
       });

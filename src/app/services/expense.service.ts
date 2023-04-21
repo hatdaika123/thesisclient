@@ -20,8 +20,8 @@ export class ExpenseService {
             .post(url, expense);
     }
 
-    getExpensesUsingGET(page: number, pageSize: number): Observable<PageOfExpenseDTO> {
-        const url: string = `${this.basePath}?page=${page}&pageSize=${pageSize}`;
+    getExpensesUsingGET(page: number, pageSize: number, sort: string): Observable<PageOfExpenseDTO> {
+        const url: string = `${this.basePath}?page=${page}&pageSize=${pageSize}&sort=${sort}`;
 
         return this.httpClient
             .get<PageOfExpenseDTO>(url);
@@ -32,5 +32,11 @@ export class ExpenseService {
         
         return this.httpClient
             .get<ExpenseDTO>(url);
-    } 
+    }
+    
+    deleteExpenseByIdUsingDELETE(id: string): Observable<any> {
+        const url: string = `${this.basePath}/${id}`;
+        return this.httpClient
+          .delete(url);
+    }
 }

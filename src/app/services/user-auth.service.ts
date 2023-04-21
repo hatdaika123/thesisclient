@@ -26,4 +26,10 @@ export class UserAuthService {
     return this.httpClient
       .post<UserAuthDTO>(url, form);
   }
+
+  verifyTokenUsingPOST(token: string): Observable<void> {
+    const url: string = `${environment.api}/login/token`;
+    return this.httpClient
+      .post<void>(url, { token });
+  }
 }
