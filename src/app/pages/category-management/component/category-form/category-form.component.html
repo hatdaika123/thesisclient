@@ -6,7 +6,7 @@
     rejectButtonStyleClass="ts-button-primary">
 </p-confirmDialog>
 <div class="ts-category-form vh-100">
-    <h1 class="text-capitalize text-center ts-page-title">{{ category ? 'Edit' : 'New' }} Category</h1>
+    <h1 class="text-capitalize text-center ts-page-title ts-page-title--dark">{{ category ? 'Edit' : 'New' }} Category</h1>
     <a pButton 
         role="button" 
         class="p-button-text ts-category-form-back"
@@ -21,7 +21,7 @@
     </p-progressSpinner>
 
     <div class="ts-category-form-content ts-hide-scrollbar overflow-auto">
-        <form class="ts-category-form__form w-100"
+        <form class="ts-category-form__form w-100 border shadow"
             *ngIf="form"
             [formGroup]="form">
             <div class="form-group mb-3">

@@ -1,12 +1,14 @@
+@use 'src/variables.scss';
+
 .ts-category-management {
     padding: 20px;
-    padding-top: 70px;
-    background: #058cb1;
+    padding-top: 40px;
+    background: variables.$color-secondary;
 
     &-back {
         color: #fff;
         text-decoration: none;
-        top: 70px;
+        top: 40px;
         position: absolute;
         padding: 0;
 
