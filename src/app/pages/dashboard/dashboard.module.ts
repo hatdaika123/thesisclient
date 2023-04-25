@@ -7,6 +7,7 @@ import { SelectButtonModule } from 'primeng/selectbutton';
 import { DropdownModule } from 'primeng/dropdown';
 import ExpenseModule from '../expense/expense.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ButtonModule } from 'primeng/button';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ChartModule,
     SelectButtonModule,
     DropdownModule,
-    ExpenseModule
+    ExpenseModule,
+    ButtonModule
   ]
 })
 export default class DashboardModule { }

@@ -4,16 +4,16 @@
     <a pButton 
         role="button" 
         class="p-button-text ts-category-management-back"
-        [routerLink]="urlHelper.expense()">
-        <span class="material-symbols-outlined">
-            arrow_back_ios_new
-        </span>
+        [routerLink]="urlHelper.expense()"
+        icon="pi pi-angle-left"
+        label="Back">
     </a>
 
     <a pButton 
         role="button" 
         class="p-button ts-category-management-add-btn"
         icon="pi pi-plus"
+        label="Category"
         [routerLink]="urlHelper.newCategory()">
     </a>
 

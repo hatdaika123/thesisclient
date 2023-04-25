@@ -5,6 +5,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { PagesRoutingModule } from './pages.routing';
 import { NavComponent } from './nav/nav.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
+import { SidebarModule } from 'primeng/sidebar';
+import { ButtonModule } from 'primeng/button';
 
 @NgModule({
   declarations: [
@@ -15,7 +17,9 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
   ],
   imports: [
     CommonModule,
-    PagesRoutingModule
+    PagesRoutingModule,
+    SidebarModule,
+    ButtonModule
   ]
 })
 export class PagesModule { }

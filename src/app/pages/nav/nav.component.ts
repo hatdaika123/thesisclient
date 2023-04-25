@@ -10,6 +10,7 @@ import { filter, map } from 'rxjs';
 })
 export class NavComponent implements OnInit {
 
+  public display: boolean = false;
   public ITEMS = [
     { label: 'home', icon: 'home', route: 'expense' },
     { label: 'dashboard', icon: 'analytics', route: 'dashboard' },
@@ -51,6 +52,10 @@ export class NavComponent implements OnInit {
           this.cd.detectChanges();
         }
       });
+  }
+
+  onToggleSidebar(): void {
+    this.display = !this.display;
   }
 
 }

@@ -1,15 +1,31 @@
-<div class="ts-nav w-100 position-fixed bottom-0">
-    <div class="d-flex justify-content-center align-items-center rounded">
-        <ul class="ts-navigation d-flex">
-            <li *ngFor="let item of ITEMS"
-                [class.active]="currentRoute === item.route">
-                <a [routerLink]="[item.route]">
-                    <span class="material-symbols-outlined icon">{{ item.icon }}</span>
-                </a>
-            </li>
-            <div class="indicator">
-                <span></span>
-            </div>
-        </ul>
-    </div>
+<div class="ts-nav--mobile">
+    <p-sidebar [(visible)]="display"
+        [blockScroll]="true">
+        <ng-container *ngTemplateOutlet="menu"></ng-container>
+    </p-sidebar>
+
+    <button pButton
+        type="button"
+        icon="pi pi-bars"
+        class="ts-button-third border-0 ts-nav__hamburger"
+        (click)="onToggleSidebar()">
+    </button>
 </div>
+
+<div class="ts-nav--desktop">
+    <ng-container *ngTemplateOutlet="menu"></ng-container>
+</div>
+
+<ng-template #menu>
+    <ul class="ts-nav d-flex flex-column justify-content-center p-0">
+        <li *ngFor="let item of ITEMS"
+            [class.active]="currentRoute === item.route"
+            class="rounded">
+            <a [routerLink]="[item.route]"
+                class="d-inline-flex align-items-center w-100 h-100 p-2">
+                <span class="material-symbols-outlined icon">{{ item.icon }}</span>
+                <span class="text-capitalize">{{ item.label }}</span>
+            </a>
+        </li>
+    </ul>
+</ng-template>

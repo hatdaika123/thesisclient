@@ -1,10 +1,11 @@
 <p-toast styleClass="ts-mw-75"></p-toast>
-<div class="d-flex flex-column"
-    style="gap: 10px;">
+<div class="row ts-category-list">
     <p-skeleton *ngIf="loading"
-        height="70px">
+        height="70px"
+        class="col-lg-4 col-12">
     </p-skeleton>
     <category-item *ngFor="let category of categories"
-        [data]="category">
+        [data]="category"
+        class="col-lg-4 col-12 mb-2">
     </category-item>
 </div>

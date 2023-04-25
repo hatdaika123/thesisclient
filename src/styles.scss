@@ -52,9 +52,10 @@ body {
     &-page-title {
         font-size: 18px;
         color: #fff;
+        font-weight: bold;
 
         &--dark {
-            color: #222;
+            color: variables.$text-color-primary;
         }
     }
 

@@ -59,3 +59,13 @@
         text-decoration: none;
     }
 }
+
+@media (min-width: variables.$screen-md-min) {
+    .ts-expense {
+        
+        &-balance {
+            width: 50%;
+            margin: 0 auto;
+        }
+    }
+}
