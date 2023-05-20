@@ -21,21 +21,28 @@
                 </p-selectButton>
             </div>
 
-            <div class="d-flex justify-content-end p-2">
-                <p-dropdown [options]="transactionTypes"
-                    formControlName="expenseType">
-                </p-dropdown>
-            </div>
+            <p-dropdown [options]="transactionTypes"
+                formControlName="expenseType">
+            </p-dropdown>
         </form>
 
-        <p-chart type="line" [data]="basicData" [options]="basicOptions"></p-chart>
-
-        <p-chart type="pie" 
-            [data]="data" 
-            [options]="chartOptions"  
-            [style]="{'width': '70%'}"
-            class="w-40 d-block mx-auto mt-4 mb-4">
-        </p-chart>
+        <div class="row">
+            <div class="col-lg-6 col-12">
+                <p-chart type="line" [data]="basicData" [options]="basicOptions"></p-chart>
+            </div>
+            <div class="col-lg-6 col-12">
+                <h3 class="text-capitalize title mt-1">
+                    {{ theDateType === 'date' ? 'today' : 'this ' + theDateType }}:
+                </h3>
+                <p-chart type="pie" 
+                    [data]="data" 
+                    [options]="chartOptions"  
+                    [style]="{'width': '70%'}"
+                    class="w-40 d-block mx-auto mt-4 mb-4">
+                </p-chart>
+            </div>
+    
+        </div>
 
         <expense-history header="top transactions" 
             sort="amount,desc">

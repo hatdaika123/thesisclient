@@ -1,5 +1,5 @@
 <div class="ts-user-profile vh-100">
-    <h1 class="text-capitalize text-center ts-page-title">Profile</h1>
+    <h1 class="text-capitalize text-center ts-page-title ts-page-title--dark">Profile</h1>
 
     <a pButton 
         role="button" 
@@ -10,5 +10,10 @@
         </span>
     </a>
 
-    <div class="ts-user-profile-avatar">avatar</div>
+    <button pButton
+        type="button"
+        label="Log Out"
+        (click)="onLogOutClicked()"
+        class="p-button-outlined mt-3 p-button-secondary w-100">
+    </button>
 </div>
